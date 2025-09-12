@@ -6,19 +6,21 @@ from domain.question import question_router
 app = FastAPI()
 
 
-@app.get("/hello")
-def hello():
-    return{"message": "안녕하세요 파이보"}
+origins = [
+    "http://192.168.32.42:5173"
+]
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-# origins = [
-#     "http://127.0.0.1:5173"
-# ]
+# @app.get("/hello")
+# def hello():
+#     return{"message": "안녕하세요 파이보"}
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=origins,
-#     allow_credentail=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+app.include_router(question_router.router)
+
