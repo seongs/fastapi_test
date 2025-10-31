@@ -1,5 +1,8 @@
 venv/
-__pycache__/
-*.ini
-*.db
 .env
+.idea
+myapi.db
+*.pyc
+__pycache__
+migrations
+alembic.ini
